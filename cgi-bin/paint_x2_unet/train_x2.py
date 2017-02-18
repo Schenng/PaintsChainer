@@ -60,7 +60,7 @@ def main():
     cnn = unet.UNET()
     #serializers.load_npz("result/model_iter_10000", cnn)
     cnn_128 = unet.UNET()
-    serializers.load_npz("models/model_cnn_128_dfl2_9", cnn_128)
+    serializers.load_npz("models/model_cnn_128", cnn_128)
 
     dataset = Image2ImageDatasetX2(
         "dat/images_color_train.dat", root + "linex2/", root + "colorx2/", train=True)
@@ -106,8 +106,8 @@ def main():
         chainer.serializers.load_npz(args.resume, trainer)
 
     # Save the trained model
-    chainer.serializers.save_npz(os.path.join(out_dir, 'model_final'), cnn)
-    chainer.serializers.save_npz(os.path.join(out_dir, 'optimizer_final'), opt)
+    chainer.serializers.save_npz(os.path.join(args.out, 'model_final'), cnn)
+    chainer.serializers.save_npz(os.path.join(args.out, 'optimizer_final'), opt)
 
 
 class ganUpdater(chainer.training.StandardUpdater):

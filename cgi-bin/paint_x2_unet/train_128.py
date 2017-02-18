@@ -63,7 +63,7 @@ def main():
     #serializers.load_npz("result/model_dis_iter_20000", dis)
 
     l = lnet.LNET()
-    serializers.load_npz("models/liner_f", l)
+    #serializers.load_npz("models/liner_f", l)
 
     dataset = Image2ImageDataset(
         "dat/images_color_train.dat", root + "line/", root + "color/", train=True)
@@ -121,8 +121,8 @@ def main():
         chainer.serializers.load_npz(args.resume, trainer)
 
     # Save the trained model
-    chainer.serializers.save_npz(os.path.join(out_dir, 'model_final'), cnn)
-    chainer.serializers.save_npz(os.path.join(out_dir, 'optimizer_final'), opt)
+    chainer.serializers.save_npz(os.path.join(args.out, 'model_final'), cnn)
+    chainer.serializers.save_npz(os.path.join(args.out, 'optimizer_final'), opt)
 
 
 class ganUpdater(chainer.training.StandardUpdater):
